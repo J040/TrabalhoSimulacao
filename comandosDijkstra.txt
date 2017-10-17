@@ -1,0 +1,23 @@
+criarGrafoPonderado();
+inserirVertice("0");
+inserirVertice("1");
+inserirVertice("2");
+inserirVertice("3");
+inserirVertice("4");
+inserirVertice("5");
+
+inserirArestaPonderada("0","1", 1);
+inserirArestaPonderada("0","2", 5);
+inserirArestaPonderada("1","4", 6);
+inserirArestaPonderada("1","3", 4);
+inserirArestaPonderada("2","4", 1);
+inserirArestaPonderada("2","5", 2);
+inserirArestaPonderada("3","5", 15);
+inserirArestaPonderada("4","5", 7);
+
+
+criarMatriz();
+
+dijkstra("0");
+
+fechados
