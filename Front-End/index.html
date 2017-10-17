@@ -1,17 +1,27 @@
 <html>
     <head>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <style>
-        body {
-  margin: 0px;
-  overflow: hidden;
-}
+ 
         </style>
     </head>
 
     <body>
             <body>
-              <canvas id="canvas" style="backGround-color: black" width="1000" height="1000"></canvas>
+                <div class="col-md-12">
+                    <div class="pull-left">
+                       <canvas id="canvas" style="backGround-color: black; padding: 30px"></canvas>
+                    </div>
+                    <div class="pull-left" style="margin-left: 20px">
+                       <input id="apagar" style="background-color: white; margin-bottom: 10px; margin-top:40px" type="checkbox">Apagar<br>
+                       <input id="inicio" style="background-color: white; margin-bottom: 10px" type="checkbox">Inicio<br>
+                       <input id="fim"   style="background-color: white; margin-bottom: 10px" type="checkbox">Fim<br>
+                       <input id="parede" style="background-color: white; margin-bottom: 10px" type="checkbox">Parede<br>
+                       
+                    </div>
+                </div>
             </body>
     </body>
     <script>
@@ -27,13 +37,32 @@ for (var i = 0; i < tam; i++) {
     }    
 }
 
+$('#apagar').on('click', function () {
+    type = 0;
+});
+
+$('#inicio').on('click', function () {
+    type = 1;
+});
+
+$('#fim').on('click', function () {
+    type = 2;
+});
+
+$('#parede').on('click', function () {
+    type = 3;
+});
+
 
 var canvas = document.getElementById("canvas");
 var my_context = canvas.getContext('2d');
-my_context.rect(0, 0, 1000, 1000);
+canvas.width = 700;
+canvas.height = 700;
+
+//my_context.rect(0, 0, 225, 225);
 my_context.stroke();
 my_context.fillStyle = "white";
-my_context.backgroundColor = "black";
+my_context.backgroundColor = "green";
 
 var xvalue = 0;
 var yvalue = 0;
@@ -47,21 +76,67 @@ for (var y = 0; y < tam; y++) {
   yvalue += 41;
 }
 
+var type = 3;
+var jaTemInicio = false;
+var jaTemFim = false;
+
+
+
+
 $(canvas).on('click', function(e) {
+    
     //console.log(e.offsetX);
-    //console.log(e.offsetY);    
-    my_context.fillStyle = "red";
+    //console.log(e.offsetY);
+      
    // var x = Math.trunc(e.offsetX  / 40) * 40 + Math.trunc(e.offsetX / 40);
    // var y = Math.trunc(e.offsetY / 40) * 40 + Math.trunc(e.offsetY / 40);
+    var x = e.offsetX - 30;
+    var y = e.offsetY - 30;
     
     //console.log(x)
     //console.log(y)
     for (var i = 0;  i < tam; i++) {
         for (var j = 0;  j < tam; j++) {
-            if(e.offsetX >= i * 40 && e.offsetX <= ((i + 1) * 40) && e.offsetY >= j * 40 && e.offsetY <= ((j + 1) * 40)){ 
-                console.log(e.offsetX)
+            if(x >= i * 40 && x <= ((i + 1) * 40) && y >= j * 40 && y <= ((j + 1) * 40)){ 
+
+            switch(type){
+            case 0:
+                my_context.fillStyle = "white";
+                if(  matriz[j][i] == 1){
+                    jaTemInicio = false;
+                }
+                if(  matriz[j][i] == 2){
+                    jaTemFim = false;
+                }
+                matriz[j][i] = 0;
+                break;
+            case 1:
+                my_context.fillStyle = "green";
+                if(jaTemInicio){
+                    return;
+                }
+                jaTemInicio = true;
+                
+                matriz[j][i] = 1;
+                break;
+            case 2:
+                my_context.fillStyle = "red";
+                if(jaTemFim){
+                    return;
+                }
+                jaTemFim = true;
+                matriz[j][i] = 2;
+                break;
+            case 3:
+                my_context.fillStyle = "grey";
+                matriz[j][i] = 3;
+                break;            
+            }
+
+                // if(matriz[j][i] == 1){
+                //     return;
+                // }
                 my_context.fillRect(i *40 + i, j * 40 + j , 40, 40);
-                matriz[i][j] = 1;
                 return;
             }
         }
