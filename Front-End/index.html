@@ -15,15 +15,37 @@
                        <canvas id="canvas" style="backGround-color: black; padding: 30px"></canvas>
                     </div>
                     <div class="pull-left" style="margin-left: 20px">
-                       <input id="apagar" style="background-color: white; margin-bottom: 10px; margin-top:40px" type="checkbox">Apagar<br>
+                       <!-- <input id="apagar" style="background-color: white; margin-bottom: 10px; margin-top:40px" type="checkbox">Apagar<br>
                        <input id="inicio" style="background-color: white; margin-bottom: 10px" type="checkbox">Inicio<br>
                        <input id="fim"   style="background-color: white; margin-bottom: 10px" type="checkbox">Fim<br>
-                       <input id="parede" style="background-color: white; margin-bottom: 10px" type="checkbox">Parede<br>
+                       <input id="parede" style="background-color: white; margin-bottom: 10px" type="checkbox">Parede<br> -->
                        
+
+                       <form action="#">
+                        <p>
+                          <input name="group1" type="radio" id="apagar" />
+                          <label for="test1">Apagar</label>
+                        </p>
+                        <p>
+                          <input name="group1" type="radio" id="inicio" />
+                          <label for="test2">Inicio</label>
+                        </p>
+                        <p>
+                          <input class="with-gap" name="group1" type="radio" id="fim"  />
+                          <label for="test3">Fim</label>
+                        </p>
+                        <p>
+                          <input name="group1" type="radio" id="parede"/>
+                          <label for="test4">Parede</label>
+                        </p>
+                      </form>
+
+
                     </div>
                 </div>
             </body>
     </body>
+    <script  src="graph.js"></script>
     <script>
     
 var tam = 15;  
@@ -82,14 +104,10 @@ var jaTemFim = false;
 
 
 
+var clicking = false;
 
-$(canvas).on('click', function(e) {
-    
-    //console.log(e.offsetX);
-    //console.log(e.offsetY);
-      
-   // var x = Math.trunc(e.offsetX  / 40) * 40 + Math.trunc(e.offsetX / 40);
-   // var y = Math.trunc(e.offsetY / 40) * 40 + Math.trunc(e.offsetY / 40);
+$(canvas).mousedown(function(e){
+    clicking = true;
     var x = e.offsetX - 30;
     var y = e.offsetY - 30;
     
@@ -142,11 +160,111 @@ $(canvas).on('click', function(e) {
         }
     }
 
+    
+});
+
+$(document).mouseup(function(){
+    clicking = false;
+})
+
+$(canvas).mousemove(function(e){
+    if(clicking == false) return;
+
+    var x = e.offsetX - 30;
+    var y = e.offsetY - 30;
+    
+    //console.log(x)
+    //console.log(y)
+    for (var i = 0;  i < tam; i++) {
+        for (var j = 0;  j < tam; j++) {
+            if(x >= i * 40 && x <= ((i + 1) * 40) && y >= j * 40 && y <= ((j + 1) * 40)){ 
+
+            switch(type){
+            case 0:
+                my_context.fillStyle = "white";
+                if(  matriz[j][i] == 1){
+                    jaTemInicio = false;
+                }
+                if(  matriz[j][i] == 2){
+                    jaTemFim = false;
+                }
+                matriz[j][i] = 0;
+                break;
+            case 1:
+                my_context.fillStyle = "green";
+                if(jaTemInicio){
+                    return;
+                }
+                jaTemInicio = true;
+                
+                matriz[j][i] = 1;
+                break;
+            case 2:
+                my_context.fillStyle = "red";
+                if(jaTemFim){
+                    return;
+                }
+                jaTemFim = true;
+                matriz[j][i] = 2;
+                break;
+            case 3:
+                my_context.fillStyle = "grey";
+                matriz[j][i] = 3;
+                break;            
+            }
+
+                // if(matriz[j][i] == 1){
+                //     return;
+                // }
+                my_context.fillRect(i *40 + i, j * 40 + j , 40, 40);
+                return;
+            }
+        }
+    }
+
+
+});
+
+
+
+$(canvas).on('click', function(e) {
+    
+    //console.log(e.offsetX);
+    //console.log(e.offsetY);
+      
+   // var x = Math.trunc(e.offsetX  / 40) * 40 + Math.trunc(e.offsetX / 40);
+   // var y = Math.trunc(e.offsetY / 40) * 40 + Math.trunc(e.offsetY / 40);
+
   
     
     
 })
+
+var map = {a:{b:1,d:1},b:{e:1},e:{c:1},c:{},d:{c:1}},
+    graph = new Graph(map);
+
      
+
+    var map = new Array();
+    var cont = 0;
+     var transformarEmUmGrafoLegivelPeloAlgoritmoDijkstra = function () {
+
+        for (var i = 0; i < matriz.length; i++) {
+           for (var j = 0; j < matriz[i].length; j++) {
+               
+                switch(matriz[i][j]){
+                    case 0:
+                       
+
+                    break;
+                }
+               
+           }
+            
+        }
+
+        console.log(map);
+     }
 
 
     </script>
