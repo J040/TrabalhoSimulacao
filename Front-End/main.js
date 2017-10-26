@@ -224,8 +224,13 @@ $(canvas).on('click', function(e) {
          var nome;
          var peso;
      }
+    
+    
      var graph;
+
+
      $('#btnDij').on('click',function (){
+        $('#btnA').click();
         g = {};
         for (var i = 0; i < matriz.length * matriz.length; i++) {
             g[i] = {}
@@ -241,9 +246,16 @@ $(canvas).on('click', function(e) {
         
         var path = graph.findShortestPath(inicio, fim);
         if(path != null){
-           for (var i = 1; i < path.length -1; i++) {
-            desenharPathDij(path[i])
-            }
+
+            var i = 1;
+            var intervalId = setInterval(function (){
+                desenharPathDij(path[i])
+             i++;
+             if(i == path.length - 1){
+                 clearInterval(intervalId);
+             }
+            }, 200);
+         
         } else {
             console.log('impossivel calcular')
         }
@@ -275,9 +287,16 @@ $(canvas).on('click', function(e) {
         var path = astar.search(graph, start, end);
         console.log(path);
         if(path != null){
-           for (var i = 0; i < path.length -1; i++) {
-               desenharPathA(path[i])
-            }
+         //  for (var i = 0; i < path.length -1; i++) {
+             var i = 0;
+               var intervalId = setInterval(function (){
+                desenharPathA(path[i])
+                i++;
+                if(i == path.length - 1){
+                    clearInterval(intervalId);
+                }
+               }, 200);
+            //}
         } else {
             console.log('impossivel calcular')
         }
@@ -285,13 +304,19 @@ $(canvas).on('click', function(e) {
 
 var funa = function (a, b) {
     var cont = 0;
+    var pode = false;
     for (var i = a-1; i <=  a + 1; i++) {
-        for (var j = b - 1; j <= b + 1; j++) {
+        for (var j = b-1; j <= b + 1; j++) {
+            if(pode){   
             if((i >= 0 && i < matriz.length) && (j >= 0 && j < matriz.length) && !(i== a && j == b)){
-                if(matriz[i][j] != 3){
-                    g[(a * matriz.length) + b][(i * matriz.length) + j] = 1;
+                   
+                    if(matriz[i][j] != 3){
+                        g[(a * matriz.length) + b][(i * matriz.length) + j] = 1;
+                    }
                 }
             }
+            pode = !pode;
+            
         }        
     }
 }
