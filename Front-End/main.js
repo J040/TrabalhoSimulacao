@@ -1,4 +1,5 @@
-    
+
+
 var tam = 15;  
 var batata = "algo";  
 var matriz = new Array(tam);
@@ -224,7 +225,7 @@ $(canvas).on('click', function(e) {
          var peso;
      }
      var graph;
-     $('#btnSet').on('click',function (){
+     $('#btnDij').on('click',function (){
         g = {};
         for (var i = 0; i < matriz.length * matriz.length; i++) {
             g[i] = {}
@@ -234,18 +235,54 @@ $(canvas).on('click', function(e) {
             for (var j = 0; j < matriz[i].length; j++) {
                 funa(i,j);
             }
-        } 
+        }
 
         graph = new Graph(g)
-      
         
         var path = graph.findShortestPath(inicio, fim);
-        
-        for (var i = 0; i < path.length; i++) {
-            desenharPath(path[i])
+        if(path != null){
+           for (var i = 1; i < path.length -1; i++) {
+            desenharPathDij(path[i])
+            }
+        } else {
+            console.log('impossivel calcular')
         }
-        
      })
+
+     $('#btnA').on('click',function (){
+
+        var matrizLig = new Array(tam);
+
+        for (var i = 0; i < matriz.length; i++) {
+            matrizLig[i] = new Array(tam);
+            for (var j = 0; j < matriz[i].length; j++) {
+
+                if(matriz[i][j] == 3){
+                    matrizLig[i][j] = 0;
+                } else {
+                    matrizLig[i][j] = 1;
+                }   
+            }
+        }
+
+        graph = new GraphA(matrizLig)
+        var start = graph.grid[parseInt(inicio / matriz.length, 10)][inicio % matriz.length];
+    
+        var end = graph.grid[parseInt(fim / matriz.length, 10)][fim % matriz.length];
+        
+        
+        
+        var path = astar.search(graph, start, end);
+        console.log(path);
+        if(path != null){
+           for (var i = 0; i < path.length -1; i++) {
+               desenharPathA(path[i])
+            }
+        } else {
+            console.log('impossivel calcular')
+        }
+     })
+
 var funa = function (a, b) {
     var cont = 0;
     for (var i = a-1; i <=  a + 1; i++) {
@@ -254,16 +291,24 @@ var funa = function (a, b) {
                 if(matriz[i][j] != 3){
                     g[(a * matriz.length) + b][(i * matriz.length) + j] = 1;
                 }
-                         
             }
         }        
     }
 }
 
-var desenharPath = function (n) {
+var desenharPathDij = function (n) {
     var j = parseInt(n / matriz.length, 10);
     var i = n % matriz.length;
-    my_context.fillStyle = "yellow";
+    my_context.fillStyle = "#f19500";
     
     my_context.fillRect(i *40 + i, j * 40 + j , 40, 40);
 }
+
+var desenharPathA = function (n) {
+    
+    my_context.fillStyle = "#ac6a00";
+    
+    my_context.fillRect(n.y *40 + n.y, n.x* 40 + n.x , 40, 40);
+}
+
+
