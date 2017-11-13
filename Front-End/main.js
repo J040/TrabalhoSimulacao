@@ -1,7 +1,6 @@
 
+var tam = 15;
 
-var tam = 15;  
-var batata = "algo";  
 var matriz = new Array(tam);
 
 for (var i = 0; i < tam; i++) {
@@ -64,8 +63,6 @@ $(canvas).mousedown(function(e){
     var x = e.offsetX - 30;
     var y = e.offsetY - 30;
     
-    //console.log(x)
-    //console.log(y)
     for (var i = 0;  i < tam; i++) {
         for (var j = 0;  j < tam; j++) {
             if(x >= i * 40 && x <= ((i + 1) * 40) && y >= j * 40 && y <= ((j + 1) * 40)){ 
@@ -132,8 +129,6 @@ $(canvas).mousemove(function(e){
     var x = e.offsetX - 30;
     var y = e.offsetY - 30;
     
-    //console.log(x)
-    //console.log(y)
     for (var i = 0;  i < tam; i++) {
         for (var j = 0;  j < tam; j++) {
             if(x >= i * 40 && x <= ((i + 1) * 40) && y >= j * 40 && y <= ((j + 1) * 40)){ 
@@ -182,9 +177,6 @@ $(canvas).mousemove(function(e){
                 break;            
             }
 
-                // if(matriz[j][i] == 1){
-                //     return;
-                // }
                 my_context.fillRect(i *40 + i, j * 40 + j , 40, 40);
                 return;
             }
@@ -194,24 +186,6 @@ $(canvas).mousemove(function(e){
 
 });
 
-
-
-$(canvas).on('click', function(e) {
-    
-    //console.log(e.offsetX);
-    //console.log(e.offsetY);
-      
-   // var x = Math.trunc(e.offsetX  / 40) * 40 + Math.trunc(e.offsetX / 40);
-   // var y = Math.trunc(e.offsetY / 40) * 40 + Math.trunc(e.offsetY / 40);
-
-  
-    
-    
-})
-
-    //var map = {0:{1:1, 3:1},1:{2:1}, 2:{3:1}};
-    ///var graph = new Graph(map);
-    var graph;
 
     var g = {};
     
@@ -287,7 +261,7 @@ $(canvas).on('click', function(e) {
         var path = astar.search(graph, start, end);
         console.log(path);
         if(path != null){
-         //  for (var i = 0; i < path.length -1; i++) {
+
              var i = 0;
                var intervalId = setInterval(function (){
                 desenharPathA(path[i])
@@ -296,14 +270,14 @@ $(canvas).on('click', function(e) {
                     clearInterval(intervalId);
                 }
                }, 200);
-            //}
+
         } else {
             console.log('impossivel calcular')
         }
-     })
+     });
 
 var funa = function (a, b) {
-    var cont = 0;
+
     var pode = false;
     for (var i = a-1; i <=  a + 1; i++) {
         for (var j = b-1; j <= b + 1; j++) {
@@ -327,13 +301,13 @@ var desenharPathDij = function (n) {
     my_context.fillStyle = "#f19500";
     
     my_context.fillRect(i *40 + i, j * 40 + j , 40, 40);
-}
+};
 
 var desenharPathA = function (n) {
     
     my_context.fillStyle = "#ac6a00";
     
     my_context.fillRect(n.y *40 + n.y, n.x* 40 + n.x , 40, 40);
-}
+};
 
 
