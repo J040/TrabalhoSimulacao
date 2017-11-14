@@ -2,6 +2,7 @@
 <html>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+<link rel="stylesheet" href="/ColoracaoWP%20e%20Djkistra.css">
 <head>
     <title>
         Simulador Djikistra e A*
@@ -9,7 +10,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h2>Simulador Djikistra e  A*</h2>
+    <h2 class="text-center">Simulador Djikistra e  A*</h2>
     <div class="card col-md-10">
         <!--<img class="card-img-top" src="C:\Users\Juliano Gutierrez\Downloads\graph-game.jpg" alt="Card image cap">-->
         <div class="card-block">
@@ -26,17 +27,17 @@
 
     <div class="card col-md-7">
         <div class="card-block">
-
+            <label>Origem</label>
             <input type="text" id="A">
-            <button onclick="inserirVertice(document.getElementById('A').value)">Inserir Vértice</button><br><br>
+            <button type="button" class="btn btn-outline-secondary" onclick="inserirVertice(document.getElementById('A').value)">Inserir Vértice</button><br><br>
             <input type="text" id="B"> <input type="text" id="C">
-            <button onclick="inserirAresta(document.getElementById('B').value,document.getElementById('C').value)">Inserir Aresta</button> <br><br>
+            <button type="button" class="btn btn-outline-secondary onclick="inserirAresta(document.getElementById('B').value,document.getElementById('C').value)">Inserir Aresta</button> <br><br>
             <input type="text" id="D"> <input type="text" id="F">  <input type="text" id="G">
-            <button onclick="inserirAresta(document.getElementById('D').value,document.getElementById('F').value,document.getElementById('G').value)">Inserir ArestaPonderada</button> <br><br>
+            <button type="button" class="btn btn-outline-secondary onclick="inserirAresta(document.getElementById('D').value,document.getElementById('F').value,document.getElementById('G').value)">Inserir ArestaPonderada</button> <br><br>
             <input type="text" id="H"> <input type="text" id="I">
-            <button onclick="inserirArco(document.getElementById('H').value,document.getElementById('I').value)">Inserir Arco</button> <br><br>
+            <button type="button" class="btn btn-outline-secondary onclick="inserirArco(document.getElementById('H').value,document.getElementById('I').value)">Inserir Arco</button> <br><br>
             <input type="text" id="J"> <input type="text" id="K"> <input type="text" id="L">
-            <button onclick="inserirArco(document.getElementById('J').value,document.getElementById('K').value,document.getElementById('L').value)">Inserir Arco Ponderado</button> <br><br>
+            <button type="button" class="btn btn-outline-dark onclick="inserirArco(document.getElementById('J').value,document.getElementById('K').value,document.getElementById('L').value)">Inserir Arco Ponderado</button> <br><br>
         </div>
     </div>
 
@@ -47,3 +48,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </html>
+0
