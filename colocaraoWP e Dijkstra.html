@@ -2,27 +2,46 @@
 <html>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-   <head>
-       <title>
-           Simulador Djikistra e A*
-       </title>
-   </head>
-       <body>
-           <H2>Simulador Djikistra e  A*</H2>
-           <button onclick="criarGrafo()">Criar Grafo</button> <button onclick="criarGrafoPonderado()">Criar Grafo Ponderado</button> <button onclick="criarGrafoOrientado()">Criar Grafo Orientado</button>    <button onclick="criarGrafoPonderadoOrientado()">Criar Grafo Orientado Ponderado</button><br><br>
-           <button onclick="imprimeGrafo()">Mostrar Arestas e Arcos</button><br><br>
-           <input type="text" id="A">
-           <button onclick="inserirVertice(document.getElementById('A').value)">Inserir Vértice</button><br><br>
-           <input type="text" id="B"> <input type="text" id="C">
-           <button onclick="inserirAresta(document.getElementById('B').value,document.getElementById('C').value)">Inserir Aresta</button> <br><br>
-           <input type="text" id="D"> <input type="text" id="F">  <input type="text" id="G">
-           <button onclick="inserirAresta(document.getElementById('D').value,document.getElementById('F').value,document.getElementById('G').value)">Inserir ArestaPonderada</button> <br><br>
-           <input type="text" id="H"> <input type="text" id="I">
-           <button onclick="inserirArco(document.getElementById('H').value,document.getElementById('I').value)">Inserir Arco</button> <br><br>
-           <input type="text" id="J"> <input type="text" id="K"> <input type="text" id="L">
-           <button onclick="inserirArco(document.getElementById('J').value,document.getElementById('K').value,document.getElementById('L').value)">Inserir Arco Ponderado</button> <br><br>
+<head>
+    <title>
+        Simulador Djikistra e A*
+    </title>
+</head>
+<body>
+<div class="container-fluid">
+    <h2>Simulador Djikistra e  A*</h2>
+    <div class="card col-md-10">
+        <!--<img class="card-img-top" src="C:\Users\Juliano Gutierrez\Downloads\graph-game.jpg" alt="Card image cap">-->
+        <div class="card-block">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary" onclick="criarGrafo()">Criar Grafo</button>
+                <button class= "btn btn-outline-primary" onclick="criarGrafoPonderado()">Criar Grafo Ponderado</button>
+                <button class="btn btn-outline-primary" onclick="criarGrafoOrientado()">Criar Grafo Orientado</button>
+                <button class= "btn btn-outline-primary" onclick="criarGrafoPonderadoOrientado()">Criar Grafo Orientado Ponderado</button>
+            </div>
 
-       </body>
+            <button class="btn btn-info btn-lg btn-block" onclick="imprimeGrafo()">Mostrar Arestas e Arcos</button><br><br>
+        </div>
+    </div>
+
+    <div class="card col-md-7">
+        <div class="card-block">
+
+            <input type="text" id="A">
+            <button onclick="inserirVertice(document.getElementById('A').value)">Inserir Vértice</button><br><br>
+            <input type="text" id="B"> <input type="text" id="C">
+            <button onclick="inserirAresta(document.getElementById('B').value,document.getElementById('C').value)">Inserir Aresta</button> <br><br>
+            <input type="text" id="D"> <input type="text" id="F">  <input type="text" id="G">
+            <button onclick="inserirAresta(document.getElementById('D').value,document.getElementById('F').value,document.getElementById('G').value)">Inserir ArestaPonderada</button> <br><br>
+            <input type="text" id="H"> <input type="text" id="I">
+            <button onclick="inserirArco(document.getElementById('H').value,document.getElementById('I').value)">Inserir Arco</button> <br><br>
+            <input type="text" id="J"> <input type="text" id="K"> <input type="text" id="L">
+            <button onclick="inserirArco(document.getElementById('J').value,document.getElementById('K').value,document.getElementById('L').value)">Inserir Arco Ponderado</button> <br><br>
+        </div>
+    </div>
+
+</div>
+</body>
 <script src="App.js"> </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
