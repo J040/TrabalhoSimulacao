@@ -205,6 +205,8 @@ $(canvas).mousemove(function(e){
 
      $('#btnDij').on('click',function (){
         $('#btnA').click();
+
+        var t1 = performance.now();
         g = {};
         for (var i = 0; i < matriz.length * matriz.length; i++) {
             g[i] = {}
@@ -216,7 +218,7 @@ $(canvas).mousemove(function(e){
             }
         }
 
-        graph = new Graph(g)
+        graph = new Graph(g);
         
         var path = graph.findShortestPath(inicio, fim);
         if(path != null){
@@ -231,12 +233,19 @@ $(canvas).mousemove(function(e){
             }, 200);
          
         } else {
+            alert.console("Impossivel calcular");
             console.log('impossivel calcular')
         }
-     })
+
+        var t2 = performance.now();
+
+        console.log("Tempo de Execução ",t2 - t1);
+
+     });
 
      $('#btnA').on('click',function (){
 
+        var tempoInicioEstrela = performance.now();
         var matrizLig = new Array(tam);
 
         for (var i = 0; i < matriz.length; i++) {
@@ -274,6 +283,8 @@ $(canvas).mousemove(function(e){
         } else {
             console.log('impossivel calcular')
         }
+
+         var tempoFinalEstrela = performance.now();
      });
 
 var funa = function (a, b) {
