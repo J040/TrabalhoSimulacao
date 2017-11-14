@@ -1,88 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <html>
-    <head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <style>
- 
-        </style>
-    </head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
-    <body>
-            <body>
-                <div class="col-md-12">
-                    <div class="pull-left">
-                       <canvas id="canvas" style="backGround-color: black; padding: 30px"></canvas>
-                    </div>
-                    <div class="pull-left" style="margin-left: 20px">
-                       <!-- <input id="apagar" style="background-color: white; margin-bottom: 10px; margin-top:40px" type="checkbox">Apagar<br>
-                       <input id="inicio" style="background-color: white; margin-bottom: 10px" type="checkbox">Inicio<br>
-                       <input id="fim"   style="background-color: white; margin-bottom: 10px" type="checkbox">Fim<br>
-                       <input id="parede" style="background-color: white; margin-bottom: 10px" type="checkbox">Parede<br> -->
-                       
+<script  src="main.js"></script>
 
-                       <form action="#">
-                        <p>
-                          <input name="group1" type="radio" id="apagar" />
-                          <label for="test1">Apagar</label>
-                        </p>
-                        <p>
-                          <input name="group1" type="radio" id="inicio" />
-                          <label for="test2">Inicio</label>
-                        </p>
-                        <p>
-                          <input class="with-gap" name="group1" type="radio" id="fim"  />
-                          <label for="test3">Fim</label>
-                        </p>
-                        <p>
-                          <input name="group1" type="radio" id="parede"/>
-                          <label for="test4">Parede</label>
-                        </p>
-                      </form>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid col-md-12">
+    <h1 class="text-center"> Simulador Dijikstra vs A*</h1>
+    <div class="pull-left">
+        <canvas id="canvas" style="backGround-color: black; padding: 15px; padding-right: 0px"></canvas>
+    </div>
+    <div class="pull-left" style="margin-left: 20px">
 
-                      <button id="btnDij">Dijkstra</button>
-                      <button id="btnA">A*</button>
-                      
+        <div class="card">
+            <div class="card-body">
+        <form action="#">
+            <p>
+                <input name="group1" type="radio" id="apagar" />
+                <label for="test1">Apagar</label>
+            </p>
+            <p>
+                <input name="group1" type="radio" id="inicio" />
+                <label for="test2">Inicio</label>
+            </p>
+            <p>
+                <input class="with-gap" name="group1" type="radio" id="fim"  />
+                <label for="test3">Fim</label>
+            </p>
+            <p>
+                <input name="group1" type="radio" id="parede"/>
+                <label for="test4">Parede</label>
+            </p>
+        </form>
+            </div>
+        </div>
+        <button type="button" class= "btn btn-primary" id="btnDij">Dijkstra</button>
+        <button type="button" class= "btn btn-primary" id="btnA">A*</button>
+        <ul>
+            <li>
+                <i class="fa-clock-o">Tempo Execução Algoritmo Selecionado</i>
+                <span id="tempoDigitacao"></span> Milissegundos
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
 
-                    </div>
-                </div>
-            </body>
-    </body>
-    <script type='text/javascript' src="graph.js"></script>
-    <script type='text/javascript' src='astar.js'></script>
-    
-    <script  src="main.js"></script>
+</body>
+<script type='text/javascript' src="graph.js"></script>
+<script type='text/javascript' src='astar.js'></script>
 
-    <!-- <script type='text/javascript'>
-      var graph = new Graph([
-        [1,1,1,1],
-        [0,1,1,0],
-        [0,0,1,1]
-      ]);
-      var start = graph.grid[0][0];
-      var end = graph.grid[1][2];
-      var result = astar.search(graph, start, end);
-      // result is an array containing the shortest path
-      var graphDiagonal = new Graph([
-        [1,1,1,1],
-        [0,1,1,0],
-        [0,0,1,1]
-      ], { diagonal: true });
-      
-      var start = graphDiagonal.grid[0][0];
-      var end = graphDiagonal.grid[1][2];
-      var resultWithDiagonals = astar.search(graphDiagonal, start, end, { heuristic: astar.heuristics.diagonal });
-      // Weight can easily be added by increasing the values within the graph, and where 0 is infinite (a wall)
-      var graphWithWeight = new Graph([
-        [1,1,2,30],
-        [0,4,1.3,0],
-        [0,0,5,1]
-      ]);
-      var startWithWeight = graphWithWeight.grid[0][0];
-      var endWithWeight = graphWithWeight.grid[1][2];
-      var resultWithWeight = astar.search(graphWithWeight, startWithWeight, endWithWeight);
-      // resultWithWeight is an array containing the shortest path taking into account the weight of a node
-    </script> -->
+<script  src="main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
 </html>
     
