@@ -239,7 +239,9 @@ $(canvas).mousemove(function(e){
 
         var t2 = performance.now();
 
-        console.log("Tempo de Execução ",t2 - t1);
+         var tempoRestanteTeste = $("#tempoDigitacao").text();
+         tempoRestante = t2 - t1;
+         $("#tempoDigitacao").text(tempoRestanteTeste);
 
      });
 
@@ -285,6 +287,11 @@ $(canvas).mousemove(function(e){
         }
 
          var tempoFinalEstrela = performance.now();
+
+
+         var tempoRestante = $("#tempoDigitacao").text();
+         tempoRestante = tempoFinalEstrela - tempoInicioEstrela;
+         $("#tempoDigitacao").text(tempoRestante);
      });
 
 var funa = function (a, b) {
